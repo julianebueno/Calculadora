@@ -1,0 +1,135 @@
+:root {
+  --bg-color: #333;
+  --bg-color-calculadora: #555;
+
+  --bg-color-display: #222;
+  --bg-color-input: #111;
+  --color-input: #fff;
+
+  --bg-color-botoes-op: #ddd;
+  --bg-color-botoes-op-hover: #dcc;
+  --bg-color-botoes-numero: #eee;
+  --bg-color-botoes-numero-hover: #edd;
+  --bg-color-botoes-igual: #f00;
+  --bg-color-botoes-igual-hover: #f33;
+
+  --color-botoes-op: #111;
+  --color-botoes-numero: #111;
+  --color-botoes-igual: #fff;
+
+  --border-radius: 4px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--bg-color);
+}
+
+.calculadora {
+  width: 300px;
+  height: 400px;
+  padding: 10px;
+  background-color: var(--bg-color-calculadora);
+  border-radius: var(--border-radius);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(7, 1fr);
+  grid-template-areas:  
+  "display display display display"
+  "display display display display"
+  "bts-op-top bts-op-top bts-op-top bts-op-right"
+  "bts-numero bts-numero bts-numero bts-op-right"
+  "bts-numero bts-numero bts-numero bts-op-right"
+  "bts-numero bts-numero bts-numero bts-op-right"
+  "bts-numero bts-numero bts-numero bts-op-right";
+}
+
+.display {
+  width: 100%;
+  background-color: var(--bg-color-display);
+  padding: 4px;
+  margin-bottom: 4px;
+  border-radius: var(--border-radius);
+  grid-area: display;
+}
+
+.display-input {
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-color-input);
+  color: var(--color-input);
+  padding: 4px;
+  border-radius: var(--border-radius);
+  text-align: right;
+  font-size: 2em;
+  border: none;
+  outline: none;
+}
+
+.botoes {
+  padding: 1px;
+  display: grid;
+  gap: 2px;
+}
+
+.botoes-operacao-top {
+  grid-template-columns: repeat(3, 1fr);
+  grid-area: bts-op-top;
+}
+
+.botoes-operacao-right {
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(5, 1fr);
+  grid-area: bts-op-right;
+}
+
+.botoes-numero {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-area: bts-numero;
+}
+
+.botoes-operacao-top .botao,
+.botoes-operacao-right .botao {
+  background-color: var(--bg-color-botoes-op);
+  color: var(--color-botoes-op);
+  border: none;
+  outline: none;
+  border-radius: var(--border-radius);
+}
+
+.botoes-operacao-top .botao:hover,
+.botoes-operacao-right .botao:hover {
+  background-color: var(--bg-color-botoes-op-hover);
+}
+
+.botoes-numero .botao {
+  background-color: var(--bg-color-botoes-numero);
+  color: var(--color-botoes-numero);
+  border: none;
+  outline: none;
+  border-radius: var(--border-radius);
+}
+
+.botoes-numero .botao:hover {
+  background-color: var(--bg-color-botoes-numero-hover);
+}
+
+#bt_resultado {
+  background-color: var(--bg-color-botoes-igual);
+  color: var(--color-botoes-igual);
+}
+
+#bt_resultado:hover {
+  background-color: var(--bg-color-botoes-igual-hover);
+}
