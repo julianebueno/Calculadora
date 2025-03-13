@@ -1,3 +1,5 @@
+// #region ========================================== getElementById e querySelector
+
 const bt_limpar = document.getElementById('bt_limpar');
 const bt_porcentagem = document.getElementById('bt_porcentagem');
 const bt_raiz = document.getElementById('bt_raiz');
@@ -21,7 +23,10 @@ const bt9 = document.getElementById('bt9');
 const bt_virgula = document.getElementById('bt_virgula');
 const bt_apagar = document.getElementById('bt_apagar');
 
-const display = document.querySelector('.display-input');
+const display_historico = document.querySelector('.display-input-historico');
+const display_input = document.querySelector('.display-input');
+
+// #endregion ========================================== getElementById e querySelector
 
 let valor1 = '';
 let valor2 = '';
@@ -33,66 +38,80 @@ function limpar() {
   valor2 = '';
   operacao = '';
   resultado = '';
-  display.value = '';
+  display_historico.value = '';
+  display_input.value = '';
 }
 
-// TODO: Consertar a função porcentagem (200 * 50% = 100)
 function porcentagem() {
-  if (valor1 !== '') {
+  if (valor1 !== '' && operacao === '') {
     resultado = parseFloat(valor1) / 100;
+    display_historico.value = valor1 + '% =';
+    display_input.value = resultado;
+    valor1 = resultado;
+  } else if (valor2 !== '') {
+    valor2 = parseFloat(valor2) / 100;
+    display_input.value = valor2;
+    calcular();
   }
 }
 
-// TODO: Consertar a função raiz (limpar resulatdo anterior/ resultado)
 function raiz() {
   if (valor1 !== '') {
-    display.value = Math.sqrt(parseFloat(valor1));
-    valor1 = display.value;
+    resultado = Math.sqrt(parseFloat(valor1));
+    display_historico.value = '√' + valor1 + ' =';
+    display_input.value = resultado;
+    valor1 = resultado;
   }
 }
 
 function apagar() {
-  if (operacao === '') {
-    if (display.value !== '') {
-      valor1 = display.value.slice(0, -1);
-      display.value = valor1;
-    } else {
-    valor1 = valor1.slice(0, -1);
-    display.value = valor1;
-    }
+  if (resultado !== '' && operacao === '') {
+    limpar();
   } else {
-    valor2 = valor2.slice(0, -1);
-    display.value = valor2;
+    if (operacao === '') {
+      if (display_input.value !== '') {
+        valor1 = display_input.value.slice(0, -1);
+        display_input.value = valor1;
+      } else {
+        valor1 = valor1.slice(0, -1);
+        display_input.value = valor1;
+      }
+    } else {
+      valor2 = valor2.slice(0, -1);
+      display_input.value = valor2;
+    }
   }
 }
 
 function adicionarNumero(numero) {
-  if (resultado !== '') {
+  if (resultado !== '' && operacao === '') {
     limpar();
+  }
+  if (operacao === '') {
     valor1 += numero;
-    display.value = valor1;
+    display_input.value = valor1;
   } else {
-    if (operacao === '') {
-      valor1 += numero;
-      display.value = valor1;
-    } else {
-      valor2 += numero;
-      display.value = valor2;
-    }
+    valor2 += numero;
+    display_input.value = valor2;
   }
 }
 
-// TODO: verificar funcionalidade do adicionarVirgula
 function adicionarVirgula() {
   if (operacao === '') {
     if (valor1.indexOf('.') === -1) {
+      if (valor1 === '') {
+        valor1 = '0';
+      }
       valor1 += '.';
-      display.value = valor1;
+      display_input.value = valor1;
     }
   } else {
     if (valor2.indexOf('.') === -1) {
+      if (valor2 === '') {
+        valor2 = '0';
+      }
       valor2 += '.';
-      display.value = valor2;
+      display_input.value = valor2;
     }
   }
 }
@@ -100,6 +119,7 @@ function adicionarVirgula() {
 function selecionarOperacao(op) {
   if (valor1 !== '') {
     operacao = op;
+    display_historico.value = valor1 + ' ' + operacao;
   }
 }
 
@@ -119,7 +139,8 @@ function calcular() {
         resultado = parseFloat(valor1) / parseFloat(valor2);
         break;
     }
-    display.value = resultado;
+    display_historico.value = valor1 + ' ' + operacao + ' ' + valor2 + ' =';
+    display_input.value = resultado;
     valor1 = resultado;
     valor2 = '';
     operacao = '';

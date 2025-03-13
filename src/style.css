@@ -4,17 +4,18 @@
 
   --bg-color-display: #222;
   --bg-color-input: #111;
+  --color-input-opaco: #ddd;
   --color-input: #fff;
 
-  --bg-color-botoes-op: #ddd;
-  --bg-color-botoes-op-hover: #dcc;
-  --bg-color-botoes-numero: #eee;
-  --bg-color-botoes-numero-hover: #edd;
-  --bg-color-botoes-igual: #f00;
-  --bg-color-botoes-igual-hover: #f33;
+  --bg-color-botoes-op: #333;
+  --bg-color-botoes-op-hover: #433;
+  --bg-color-botoes-numero: #444;
+  --bg-color-botoes-numero-hover: #544;
+  --bg-color-botoes-igual: #d11;
+  --bg-color-botoes-igual-hover: #d33;
 
-  --color-botoes-op: #111;
-  --color-botoes-numero: #111;
+  --color-botoes-op: #fff;
+  --color-botoes-numero: #fff;
   --color-botoes-igual: #fff;
 
   --border-radius: 4px;
@@ -63,17 +64,30 @@ body {
   grid-area: display;
 }
 
+.display-input-historico,
 .display-input {
   width: 100%;
-  height: 100%;
   background-color: var(--bg-color-input);
-  color: var(--color-input);
   padding: 4px;
-  border-radius: var(--border-radius);
   text-align: right;
-  font-size: 2em;
   border: none;
   outline: none;
+}
+
+.display-input-historico {
+  height: 30%;
+  border-start-start-radius: var(--border-radius);
+  border-start-end-radius: var(--border-radius);
+  font-size: 1em;
+  color: var(--color-input-opaco);
+}
+
+.display-input {
+  height: 70%;
+  border-end-end-radius: var(--border-radius);
+  border-end-start-radius: var(--border-radius);
+  font-size: 2em;
+  color: var(--color-input);
 }
 
 .botoes {
