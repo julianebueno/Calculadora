@@ -117,9 +117,14 @@ function adicionarVirgula() {
 }
 
 function selecionarOperacao(op) {
-  if (valor1 !== '') {
+  if (valor1 !== '' && valor2 === '') {
     operacao = op;
     display_historico.value = valor1 + ' ' + operacao;
+  }
+  if (valor2 !== '') {
+    calcular();
+    operacao = op;
+    display_historico.value = resultado + ' ' + operacao;
   }
 }
 
