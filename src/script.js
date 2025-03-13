@@ -49,8 +49,8 @@ function porcentagem() {
     display_input.value = resultado;
     valor1 = resultado;
   } else if (valor2 !== '') {
-    valor2 = parseFloat(valor2) * parseFloat(valor1) / 100;
-    display_input.value = valor2;
+    if (operacao === '+' || operacao === '-') valor2 = parseFloat(valor2) * parseFloat(valor1) / 100;
+    if (operacao === '*' || operacao === '/') valor2 = parseFloat(valor2) / 100;
     calcular();
   }
 }
