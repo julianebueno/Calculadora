@@ -152,6 +152,36 @@ function calcular() {
   }
 }
 
+document.addEventListener('keydown', (event) => {
+  let key = event.key;
+  if (key === 'Escape') {
+    limpar();
+  }
+  if (key === 'p' || key === '%') {
+    porcentagem();
+  }
+  if (key === 'r' || key === '√') {
+    raiz();
+  }
+
+  if (key === '0' || key === '1' || key === '2' || key === '3' || key === '4' || key === '5' || key === '6' || key === '7' || key === '8' || key === '9') {
+    adicionarNumero(key);
+  }
+  if (key === '.' || key === ',') {
+    adicionarVirgula();
+  }
+  if (key === 'Backspace') {
+    apagar();
+  }
+
+  if (key === '+' || key === '-' || key === '*' || key === '/') {
+    selecionarOperacao(key);
+  }
+  if (key === 'Enter') {
+    calcular();
+  }
+});
+
 bt_limpar.addEventListener('click', limpar);
 bt_porcentagem.addEventListener('click', porcentagem);
 bt_raiz.addEventListener('click', raiz);
